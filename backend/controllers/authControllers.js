@@ -199,7 +199,7 @@ class AuthController {
         to: user.email,
         from: "mparjun.me@gmail.com",
         subject: "RUAS Library Password Reset Link",
-        text: `Hello ${user.name} ! Your password reset link is  http://localhost:5173/new-password/${resetToken}/, Click on that link in order to change password`,
+        text: `Hello ${user.name} ! Your password reset link is  https://seventhsem-project-frontend.onrender.com/new-password/${resetToken}/, Click on that link in order to change password`,
       });
       return res.status(200).json({ msg: "Email send...." });
     } catch (error) {

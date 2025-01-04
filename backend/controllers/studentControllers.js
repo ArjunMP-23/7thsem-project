@@ -58,6 +58,7 @@ class StudentController {
                     Default Password: ${password}
                     You can change your password by login into the system by using above credentials.
                     Thank you for using RUAS Library Management System.
+                    LINK : https://seventhsem-project-frontend.onrender.com/
                     `,
       });
     } catch (error) {

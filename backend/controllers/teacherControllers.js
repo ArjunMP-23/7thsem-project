@@ -50,6 +50,7 @@ class TeacherController {
                 Default Password: ${password}
                 For security reasons, please reset your password immediately by login with above credentials.
                 Thank you for using RUAS Library Management System.
+                LINK : https://seventhsem-project-frontend.onrender.com/
                 `,
       });
     } catch (error) {
