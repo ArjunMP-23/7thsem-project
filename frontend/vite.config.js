@@ -6,6 +6,9 @@ d.config();
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  build: {
+    outDir: 'build', // Change the output directory to 'build'.
+  },
   server: {
     proxy: { '/foo': 'http://localhost:5173',
       '/api': {
