@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // create instance of axios
-export const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:5000"; 
+export const BASE_URL ="http://localhost:5000"|| import.meta.env.VITE_BASE_URL ; 
 console.log(BASE_URL);
 export const api = axios.create({
   baseURL: `${BASE_URL}/api`,
@@ -10,6 +10,7 @@ export const api = axios.create({
     "Content-Type": "application/json",
     Accept: "application/json",
   },
+
 });
 
 // debouncing

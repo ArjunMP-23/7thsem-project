@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 const VITE_BASE_URL = process.env.VITE_BASE_URL;
 
-const APP_PORT = process.env.APP_PORT || 4000;
+const APP_PORT = process.env.PORT || process.env.APP_PORT;
 const MONGO_DB_URI = process.env.MONGO_DB_URI;
 const DEBUG_MODE = process.env.DEBUG_MODE;
 const BASE_URL = process.env.BASE_URL;

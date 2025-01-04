@@ -36,17 +36,11 @@ const allowedOrigins = process.env.NODE_ENV === 'production'
   ? [process.env.ORIGIN_1, process.env.ORIGIN_2] 
   : ['http://localhost:5173'];
 
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true, // Allow credentials (cookies, HTTP authentication, etc.)
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods for CORS
-};
+
+  const corsOptions = {
+    credentials: true,
+    origin: [VITE_BASE_URL||"http://localhost:5173"],
+  };
 
 app.use(cors(corsOptions));
 
@@ -55,10 +49,9 @@ const __filename = fileURLToPath(import.meta.url);
 export const ROOT_PATH = path.dirname(__filename);
 
 // Serve static files
-app.use("/public", express.static(path.join(ROOT_PATH, "public")));
-app.use("/uploads", express.static(path.join(ROOT_PATH, "uploads")));
-app.use("/documents", express.static(path.join(ROOT_PATH, "documents")));
-
+app.use("/public", express.static("./public"));
+app.use("/uploads", express.static("./uploads"));
+app.use("/documents", express.static("./documents")); 
 // MongoDB connection
 mongoose.connect(MONGO_DB_URI)
   .then(() => {
