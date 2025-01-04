@@ -49,9 +49,9 @@ const __filename = fileURLToPath(import.meta.url);
 export const ROOT_PATH = path.dirname(__filename);
 
 // Serve static files
-app.use("/public", express.static("./public"));
-app.use("/uploads", express.static("./uploads"));
-app.use("/documents", express.static("./documents")); 
+app.use("/public", express.static(path.join(ROOT_PATH, "public")));
+app.use("/uploads", express.static(path.join(ROOT_PATH, "uploads")));
+app.use("/documents", express.static(path.join(ROOT_PATH, "documents")));
 // MongoDB connection
 mongoose.connect(MONGO_DB_URI)
   .then(() => {
