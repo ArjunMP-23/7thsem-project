@@ -39,7 +39,7 @@ const allowedOrigins = process.env.NODE_ENV === 'production'
 
   const corsOptions = {
     credentials: true,
-    origin: [VITE_BASE_URL||"http://localhost:5173"],
+    origin: [allowedOrigins||"http://localhost:5173"],
   };
 
 app.use(cors(corsOptions));
