@@ -4,8 +4,11 @@ import path from "path";
 import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-// Import environment variables
-import { VITE_BASE_URL, APP_PORT, MONGO_DB_URI } from "./config/index.js";
+import dotenv from "dotenv";
+
+// Load environment variables
+dotenv.config();
+
 // Import all routes
 import {
   almirahRouter,
@@ -21,33 +24,32 @@ import {
   teacherRouter,
   transactionRouter,
 } from "./routes/index.js";
-import { errorHandlerMiddleware } from "./middlewares/index.js";
-import dotenv from "dotenv";
-dotenv.config();
 
+// Import error handling middleware
+import { errorHandlerMiddleware } from "./middlewares/index.js";
+
+// Constants from environment variables
+const APP_PORT = process.env.APP_PORT || 5000;
+const MONGO_DB_URI = process.env.MONGO_DB_URI;
+const NODE_ENV = process.env.NODE_ENV || "development";
+const ALLOWED_ORIGINS = NODE_ENV === "production" ? [process.env.ORIGIN_1] : ["http://localhost:5173"];
 
 // Initialize the Express application
 const app = express();
 
-// Middleware configuration
+// Middleware setup
 app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// CORS setup
-const allowedOrigins = process.env.NODE_ENV === 'production' 
-  ? [process.env.ORIGIN_1] 
-  : ['http://localhost:5173'];
-
-
-  const corsOptions = {
-    credentials: true,
-    origin: allowedOrigins,
-  };
-
+// CORS configuration
+const corsOptions = {
+  credentials: true,
+  origin: ALLOWED_ORIGINS,
+};
 app.use(cors(corsOptions));
 
-// Define absolute path for backend folder
+// Define the root path for static file serving
 const __filename = fileURLToPath(import.meta.url);
 export const ROOT_PATH = path.dirname(__filename);
 
@@ -55,13 +57,16 @@ export const ROOT_PATH = path.dirname(__filename);
 app.use("/public", express.static(path.join(ROOT_PATH, "public")));
 app.use("/uploads", express.static(path.join(ROOT_PATH, "uploads")));
 app.use("/documents", express.static(path.join(ROOT_PATH, "documents")));
+
 // MongoDB connection
-mongoose.connect(MONGO_DB_URI)
+mongoose
+  .connect(MONGO_DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("MongoDB connected successfully! 😊");
+
     // Start the server
     app.listen(APP_PORT, () => {
-      console.log(`Server is listening on port ${APP_PORT}`);
+      console.log(`Server is running on http://localhost:${APP_PORT}`);
     });
   })
   .catch((err) => {
@@ -83,6 +88,10 @@ app.use("/api/transactions", transactionRouter);
 app.use("/api/genral", genralRouter);
 app.use("/api/clearance", clearanceRouter);
 
+// Catch-all route for undefined endpoints
+app.use((req, res, next) => {
+  res.status(404).json({ message: "API route not found" });
+});
+
 // Error handling middleware
 app.use(errorHandlerMiddleware);
-
