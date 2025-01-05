@@ -29,7 +29,7 @@ import {
 import { errorHandlerMiddleware } from "./middlewares/index.js";
 
 // Constants from environment variables
-const APP_PORT = process.env.PORT || 5001;
+const APP_PORT = process.env.PORT || 8080;
 const MONGO_DB_URI = process.env.MONGO_DB_URI;
 const NODE_ENV = process.env.NODE_ENV || "development";
 const ALLOWED_ORIGINS = NODE_ENV === "production" ? [process.env.ORIGIN_1] : ["http://localhost:5173"];
