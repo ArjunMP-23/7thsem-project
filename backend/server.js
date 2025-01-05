@@ -22,6 +22,9 @@ import {
   transactionRouter,
 } from "./routes/index.js";
 import { errorHandlerMiddleware } from "./middlewares/index.js";
+import dotenv from "dotenv";
+dotenv.config();
+
 
 // Initialize the Express application
 const app = express();
@@ -33,13 +36,13 @@ app.use(cookieParser());
 
 // CORS setup
 const allowedOrigins = process.env.NODE_ENV === 'production' 
-  ? [process.env.ORIGIN_1, process.env.ORIGIN_2] 
+  ? [process.env.ORIGIN_1] 
   : ['http://localhost:5173'];
 
 
   const corsOptions = {
     credentials: true,
-    origin: [allowedOrigins],
+    origin: allowedOrigins,
   };
 
 app.use(cors(corsOptions));
