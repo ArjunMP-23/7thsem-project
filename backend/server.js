@@ -88,10 +88,7 @@ app.use("/api/transactions", transactionRouter);
 app.use("/api/genral", genralRouter);
 app.use("/api/clearance", clearanceRouter);
 
-// Catch-all route for undefined endpoints
-app.use((req, res, next) => {
-  res.status(404).json({ message: "API route not found" });
-});
+
 
 // Error handling middleware
 app.use(errorHandlerMiddleware);
