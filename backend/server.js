@@ -43,11 +43,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // CORS configuration
-const corsOptions = {
-  credentials: true,
-  origin: ALLOWED_ORIGINS,
-};
-app.use(cors(corsOptions));
+
+app.use(cors({ origin: process.env.ORIGIN_1 }));
 
 // Define the root path for static file serving
 const __filename = fileURLToPath(import.meta.url);
