@@ -63,7 +63,7 @@ mongoose
 
     // Start the server
     app.listen(APP_PORT, () => {
-      console.log(`Server is running on http://localhost:${APP_PORT}`);
+      console.log(`Server is running on ${APP_PORT}`);
     });
   })
   .catch((err) => {
