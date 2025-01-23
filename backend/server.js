@@ -44,7 +44,7 @@ app.use(cookieParser());
 
 // CORS configuration
 
-app.use(cors({ origin: process.env.ORIGIN_1 }));
+app.use(cors({ credentials: true, origin: process.env.ORIGIN_1 }));
 
 // Define the root path for static file serving
 const __filename = fileURLToPath(import.meta.url);
