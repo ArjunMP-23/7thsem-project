@@ -57,7 +57,7 @@ const Home = () => {
           <div className="heading">
             <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome  Message </h1>
           </div>
-          <div>
+          <div width="auto">
           <p>
             Welcome to the M S Ramaiah University of Applied Science, Library Management
             System !
