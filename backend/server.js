@@ -44,7 +44,7 @@ app.use(cookieParser());
 
 // CORS configuration
 
-app.use(cors({ credentials: true, origin: process.env.ORIGIN_1 }));
+app.use(cors({ credentials: true, origin:" https://seventhsem-project-frontend.onrender.com" }));
 
 // Define the root path for static file serving
 const __filename = fileURLToPath(import.meta.url);
