@@ -52,7 +52,7 @@ const AboutUs = () => {
                     <b>Mohammod Ibrahim Chickle</b>
                    
                   </h4>
-                  <h4> <b>21ETEC004003</b></h4>
+                  <h4> <b>21ETEC004042</b></h4>
                 </div>
               </div>
           
@@ -63,7 +63,7 @@ const AboutUs = () => {
                   <h4>
                     <b>Vinod Kumar</b>
                   </h4>
-                  <h4> <b>21ETEC004003</b></h4>
+                  <h4> <b>21ETEC004078</b></h4>
                 </div>
               </div>
               
